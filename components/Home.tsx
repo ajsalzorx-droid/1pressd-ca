@@ -7,6 +7,7 @@ import { Logo } from "./Logo";
 import { LoadingIntro } from "./LoadingIntro";
 import { MenuGrid } from "./MenuGrid";
 import { SectionNavigator } from "./SectionNavigator";
+import { ScrollAnimator } from "./ScrollAnimator";
 
 const Instagram = () => <span aria-hidden="true" style={{fontSize: 28, fontWeight: 700}}>@</span>;
 
@@ -26,7 +27,7 @@ export default function Home(){
  const [open,setOpen]=useState(false); const [loading,setLoading]=useState(true); const [scrolled,setScrolled]=useState(false); const [active,setActive]=useState("home"); const {scrollYProgress}=useScroll(); const heroY=useTransform(scrollYProgress,[0,.2],[0,90]);
  useEffect(()=>{document.body.style.overflow=loading||open?"hidden":"";return()=>{document.body.style.overflow=""}},[loading,open]);
  useEffect(()=>{const onScroll=()=>setScrolled(scrollY>36);onScroll();addEventListener("scroll",onScroll,{passive:true});const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)setActive(e.target.id)}),{rootMargin:"-35% 0px -55%"});document.querySelectorAll("main section[id]").forEach(el=>observer.observe(el));return()=>{removeEventListener("scroll",onScroll);observer.disconnect()}},[]);
- return <><AnimatePresence>{loading&&<LoadingIntro onDone={()=>setLoading(false)}/>}</AnimatePresence><main>
+ return <><AnimatePresence>{loading&&<LoadingIntro onDone={()=>setLoading(false)}/>}</AnimatePresence><main><ScrollAnimator/>
   <video className="heroVideo" src="/hero-cinematic.mp4" poster="/hero-cafe.png" autoPlay muted loop playsInline preload="metadata" aria-label="PRESS’D café lifestyle" />
   <header className={`nav ${scrolled?"nav--scrolled":""}`}><Logo light/><nav>{["Menu","Pet Friendly","Work at PRESS’D","Wellness","About","Visit"].map(x=>{const id=x.split(" ")[0].toLowerCase();return <a className={active===id?"active":""} aria-current={active===id?"page":undefined} href={`#${id}`} key={x}>{x}</a>})}</nav><Btn href="#visit">Book a table</Btn><button className="menuBtn" onClick={()=>setOpen(!open)} aria-label={open?"Close menu":"Open menu"} aria-expanded={open}><span>{open?"Close":"Menu"}</span>{open?<X/>:<Menu/>}</button></header>
   {open&&<motion.div className="mobileNav" initial={{opacity:0,y:-20}} animate={{opacity:1,y:0}}>{["Menu","Pet Friendly","Work at PRESS’D","Wellness","About","Visit"].map(x=><a onClick={()=>setOpen(false)} href={`#${x.split(" ")[0].toLowerCase()}`} key={x}>{x}</a>)}</motion.div>}
