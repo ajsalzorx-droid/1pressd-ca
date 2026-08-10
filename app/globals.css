@@ -5,3 +5,20 @@
 .heroVideo{position:absolute;z-index:1;inset:0;width:100%;height:100svh;min-height:680px;object-fit:cover;object-position:center;background:#111}.hero .heroImg{visibility:hidden}.hero .shade{z-index:2}.hero .heroCopy,.hero .scroll{z-index:3}
 .loader{position:fixed;z-index:100;inset:0;background:#f7ad25;color:#fff;overflow:hidden;display:grid;place-items:center}.loader video{width:100%;height:100%;object-fit:contain;object-position:center}.loader:after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.42),transparent 40%);pointer-events:none}.loader>button{position:absolute;z-index:2;right:28px;top:28px;border:1px solid #ffffffa0;color:#fff;background:#0003;backdrop-filter:blur(8px);padding:12px 16px;text-transform:uppercase;font:600 9px 'DM Sans';letter-spacing:1.5px;cursor:pointer}.loaderMark{position:absolute;z-index:2;left:4vw;bottom:4vw;display:flex;align-items:end;gap:28px}.loaderMark span{text-transform:uppercase;font-size:9px;letter-spacing:2px;color:#fff}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+
+/* Brand-led usability refinement */
+:root{--orange:#fbb019;--orange-deep:#e99b05;--ink:#090909;--cream:#fff8e9;--green:#64705a;--line:rgba(9,9,9,.18)}
+body{background:var(--cream)}
+.logo{display:block;width:154px;line-height:1;letter-spacing:0}.logo img{display:block;width:100%;height:auto}.logo--light{background:var(--orange);padding:8px 10px;border-radius:2px}
+.nav{position:fixed;height:82px;grid-template-columns:180px 1fr auto;padding:0 2.5vw;background:rgba(8,8,8,.78);border-bottom-color:#ffffff24;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.nav nav{gap:clamp(14px,1.7vw,30px)}.nav nav a{opacity:.92;padding:12px 0;position:relative}.nav nav a:after{content:'';position:absolute;left:0;right:100%;bottom:5px;height:2px;background:var(--orange);transition:right .25s}.nav nav a:hover:after{right:0}
+.nav .btn{background:var(--orange);color:var(--ink);min-height:44px;font-weight:700}.nav .btn:hover{background:#fff}
+.btn{min-height:46px;padding:15px 20px;border-radius:2px}.btn:focus-visible,.nav a:focus-visible,.menuBtn:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
+.heroCopy .btn--pale{background:var(--orange);border-color:var(--orange)}
+.intro{background:var(--cream)}.kicker,.num{color:#986400}.work .kicker,.work .num,.visit .kicker{color:var(--orange)}
+.pet{background:#fff}.menu{background:var(--cream)}.foodCard h3{font-size:22px}.foodCard p{font-size:15px;line-height:1.5}.foodCard small{font-weight:600;color:#6b4800}
+.reasons{background:#fff}.reason:hover h3{color:#b87500}.signature{background:var(--orange)}
+.social .btn,.center .btn{background:var(--orange);border-color:var(--orange);color:var(--ink)}
+footer{background:var(--orange);color:var(--ink)}footer .logo--light{background:transparent;padding:0;width:min(410px,90%)}footer a{font-weight:600}footer p{font-weight:600}
+.stickyMenu{font-weight:700;border:1px solid #000;box-shadow:0 8px 28px #0004}
+@media(max-width:900px){.nav{height:72px;padding:0 16px}.nav .logo{width:132px}.logo--light{padding:6px 8px}.mobileNav{background:var(--orange);color:var(--ink);padding-top:110px}.menuBtn{min-width:44px;min-height:44px}.heroCopy{bottom:76px}.hero h1{font-size:clamp(46px,13vw,68px)}.actions .btn{min-height:50px}.featureCopy{padding-top:76px;padding-bottom:76px}.sectionHead{padding-top:76px}.foodRail{scroll-padding-left:22px}.visit .actions{flex-wrap:wrap}.visit .actions .btn{flex:1;justify-content:center;min-width:150px}footer .logo--light{width:min(330px,100%)}}
