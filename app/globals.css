@@ -100,6 +100,12 @@ footer{background:var(--orange);color:var(--ink)}footer .logo--light{background:
 }
 @media(max-width:370px){.hero h1{font-size:40px}.heroCopy>p:not(.eyebrow){font-size:13px}.nav .logo{width:100px}.menuBtn{min-width:76px}.mobileDock a{padding-inline:11px;letter-spacing:.8px}.sectionNav__rail>a{flex-basis:76vw}.tags{grid-template-columns:1fr}}
 @media(max-width:900px) and (orientation:landscape){.hero,.heroVideo{min-height:560px}.heroCopy{bottom:78px}.hero h1{font-size:46px}.mobileNav{padding-top:78px;display:grid;grid-template-columns:1fr 1fr;align-content:start}.mobileNav a{font-size:25px}}
+
+/* Auto-advancing Explore PRESS'D carousel. */
+.sectionNav__carousel{display:flex;grid-template-columns:none;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;overscroll-behavior-inline:contain;scrollbar-width:none;padding-bottom:4px}.sectionNav__carousel::-webkit-scrollbar{display:none}.sectionNav__carousel>a{flex:0 0 calc((100% - 30px)/4);scroll-snap-align:start;scroll-snap-stop:always}.sectionNav__autoplay{width:100%;height:2px;margin-top:16px;background:#ffffff12;overflow:hidden}.sectionNav__autoplay i{display:block;width:100%;height:100%;background:var(--orange);transform-origin:left;animation:sectionNavProgress 2.8s linear infinite}@keyframes sectionNavProgress{from{transform:scaleX(0)}to{transform:scaleX(1)}}.sectionNav:hover .sectionNav__autoplay i,.sectionNav:focus-within .sectionNav__autoplay i{animation-play-state:paused}
+@media(min-width:601px) and (max-width:1050px){.sectionNav__carousel{display:flex}.sectionNav__carousel>a{flex-basis:calc((100% - 20px)/2.45)}}
+@media(max-width:600px){.sectionNav__carousel{padding-left:18px;padding-right:18px;gap:10px}.sectionNav__carousel>a{flex-basis:72vw}.sectionNav__autoplay{width:auto;margin:12px 18px 0}}
+@media(prefers-reduced-motion:reduce){.sectionNav__autoplay{display:none}.sectionNav__carousel{scroll-behavior:auto}}
 .featureImg img,.sigImage img,.gridGallery img{transition:transform 1.1s var(--pressd-ease),filter .6s ease}.scrollScene.is-visible .featureImg img,.scrollScene.is-visible .sigImage img,.scrollScene.is-visible .gridGallery img{transform:scale(1)}
 .workImage img{object-position:center 62%}
 .petImage img{object-position:center 58%}
