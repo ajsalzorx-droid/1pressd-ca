@@ -1,12 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Logo } from "./Logo";
 
 export function LoadingIntro({ onDone }: { onDone: () => void }) {
-  const [videoFailed, setVideoFailed] = useState(false);
-
   const finish = () => {
     sessionStorage.setItem("pressd-intro-seen", "1");
     onDone();
@@ -15,34 +13,23 @@ export function LoadingIntro({ onDone }: { onDone: () => void }) {
   useEffect(() => {
     if (sessionStorage.getItem("pressd-intro-seen")) { onDone(); return; }
     const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const timer = window.setTimeout(finish, reduced ? 900 : 13000);
+    const timer = window.setTimeout(finish, reduced ? 650 : 2200);
     return () => window.clearTimeout(timer);
   // `onDone` is supplied by the parent and only used to close this one-shot intro.
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return <motion.div
-    className="loader-overlay"
+    className="loader-overlay loader-static"
     role="status"
     aria-label="PRESS’D website loading"
     initial={{ opacity: 1 }}
     exit={{ opacity: 0 }}
-    transition={{ duration: .6, ease: "easeOut" }}
+    transition={{ duration: .55, ease: [.16, 1, .3, 1] }}
   >
-    <div className="loader-mobile-brand" aria-hidden="true"><Logo /></div>
-    {!videoFailed && <video
-      className="loader-video"
-      src="/pressd-loader.mp4"
-      autoPlay
-      muted
-      playsInline
-      preload="auto"
-      onEnded={finish}
-      onError={() => setVideoFailed(true)}
-      aria-hidden="true"
-    />}
-    <div className={`loader-fallback${videoFailed ? " is-visible" : ""}`} aria-hidden={!videoFailed}><Logo /></div>
-    <div className="loader-mobile-status" aria-hidden="true"><span>PRESS’D · WELLNESS CAFÉ</span><i /></div>
-    <button onClick={finish}>Skip intro</button>
+    <motion.div className="loader-static-logo" initial={{ opacity: 0, scale: .94, y: 12 }} animate={{ opacity: 1, scale: 1, y: 0 }} transition={{ duration: .75, ease: [.16, 1, .3, 1] }}><Logo /></motion.div>
+    <motion.p initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .3, duration: .5 }}>GOOD FOOD · GOOD WORK · GOOD COMPANY</motion.p>
+    <div className="loader-static-progress" aria-hidden="true"><i /></div>
+    <button onClick={finish}>Enter site</button>
   </motion.div>;
 }
