@@ -29,6 +29,7 @@ export function LoadingIntro({ onDone }: { onDone: () => void }) {
     exit={{ opacity: 0 }}
     transition={{ duration: .6, ease: "easeOut" }}
   >
+    <div className="loader-mobile-brand" aria-hidden="true"><Logo /></div>
     {!videoFailed && <video
       className="loader-video"
       src="/pressd-loader.mp4"
