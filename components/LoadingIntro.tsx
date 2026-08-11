@@ -15,7 +15,7 @@ export function LoadingIntro({ onDone }: { onDone: () => void }) {
   useEffect(() => {
     if (sessionStorage.getItem("pressd-intro-seen")) { onDone(); return; }
     const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const timer = window.setTimeout(finish, reduced ? 900 : 20000);
+    const timer = window.setTimeout(finish, reduced ? 900 : 13000);
     return () => window.clearTimeout(timer);
   // `onDone` is supplied by the parent and only used to close this one-shot intro.
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -41,6 +41,7 @@ export function LoadingIntro({ onDone }: { onDone: () => void }) {
       aria-hidden="true"
     />}
     <div className={`loader-fallback${videoFailed ? " is-visible" : ""}`} aria-hidden={!videoFailed}><Logo /></div>
+    <div className="loader-mobile-status" aria-hidden="true"><span>PRESS’D · WELLNESS CAFÉ</span><i /></div>
     <button onClick={finish}>Skip intro</button>
   </motion.div>;
 }
